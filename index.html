@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BD Income Tax Calculator</title>
+<meta name="description" content="Responsive individual income tax calculator for Bangladesh, Assessment Year 2026-27, under the Income Tax Act 2023.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Hind+Siliguri:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <p class="eyebrow">Assessment Year 2026-27 · Income year Jul 2025 to Jun 2026</p>
+    <h1>Income Tax Calculator</h1>
+    <p class="lede">For individual taxpayers in Bangladesh under the Income Tax Act 2023. Fill in your income and your tax updates as you type.</p>
+  </header>
+
+  <div class="grid">
+    <form class="inputs" id="form" autocomplete="off">
+      <div class="notice" id="exampleNote">
+        <span>Example numbers are loaded so you can see how it works.</span>
+        <button type="button" class="link" id="clearBtn">Clear all</button>
+      </div>
+
+      <section class="card">
+        <h2>About you</h2>
+        <p class="sub">Your category sets the tax-free limit.</p>
+        <div class="chips" id="cats"></div>
+        <label class="check" for="first">
+          <input type="checkbox" id="first">
+          <span>I am filing a return for the first time<small>A lower minimum tax may apply to first-time filers.</small></span>
+        </label>
+      </section>
+
+      <section class="card">
+        <h2>Salary income</h2>
+        <p class="sub">Enter the pay you receive before any deduction. One third of employment income, up to a cap, is exempt.</p>
+        <div class="chips two" role="radiogroup" aria-label="Salary amounts are entered per">
+          <label class="chip"><input type="radio" name="mode" value="monthly" checked><span class="box"><span class="t">Monthly</span><span class="s">amounts per month</span></span></label>
+          <label class="chip"><input type="radio" name="mode" value="yearly"><span class="box"><span class="t">Yearly</span><span class="s">amounts per year</span></span></label>
+        </div>
+        <div class="fields" id="salaryFields"></div>
+        <div class="fields" id="bonusFields" style="margin-top:14px"></div>
+      </section>
+
+      <section class="card">
+        <h2>Other income</h2>
+        <p class="sub">Enter net amounts for the year, after allowable costs.</p>
+        <div class="fields" id="otherFields"></div>
+      </section>
+
+      <section class="card">
+        <h2>Investment and tax already paid</h2>
+        <p class="sub">Eligible investment earns a rebate. Tax deducted at source counts toward what you owe.</p>
+        <div class="fields" id="rebateFields"></div>
+      </section>
+
+      <details class="card">
+        <summary>Rates and limits used</summary>
+        <p class="sub">These follow the figures reported for AY 2026-27. Items marked verify could not be confirmed, so check them against the latest NBR notice. You can edit any value.</p>
+        <div id="rulesBox"></div>
+        <div style="margin-top:16px"><button type="button" class="btn" id="rulesReset">Reset to defaults</button></div>
+      </details>
+    </form>
+
+    <aside class="results" id="result" aria-live="polite">
+      <div class="hero" id="payHero">
+        <div class="mlabel" id="payLabel"></div>
+        <div class="big" id="payAmount"></div>
+        <span class="pill" id="payPill"></span>
+        <p id="payNote"></p>
+      </div>
+      <section class="card">
+        <h2>Where your income goes</h2>
+        <div class="bar" id="bar" role="img" aria-label="Split of gross income across exempt, tax-free and taxed bands"></div>
+        <div class="legend" id="legend"></div>
+      </section>
+      <section class="card">
+        <h2>Summary</h2>
+        <dl class="rows" id="rows"></dl>
+        <div class="stats" id="stats"></div>
+      </section>
+      <section class="card">
+        <h2>Slab breakdown</h2>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>Band (৳)</th><th class="num">Income in band</th><th class="num">Rate</th><th class="num">Tax</th></tr></thead>
+            <tbody id="slabBody"></tbody>
+          </table>
+        </div>
+      </section>
+      <div class="actions">
+        <button type="button" class="btn primary" id="copyBtn">Copy summary</button>
+      </div>
+    </aside>
+  </div>
+
+  <p class="foot">This is a planning estimate, not tax advice. It leaves out net wealth surcharge, income taxed at special or final rates, and foreign income. Confirm the figures with the National Board of Revenue (nbr.gov.bd) or a tax professional before you file.</p>
+</main>
+
+<div class="dock" id="dock" hidden>
+  <div>
+    <div class="mlabel">Tax to pay</div>
+    <div class="amt" id="dockAmt">৳ 0</div>
+  </div>
+  <button type="button" class="btn primary" id="dockBtn">See breakdown</button>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="tax.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
