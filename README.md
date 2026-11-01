@@ -2,6 +2,8 @@
 
 A free, privacy-friendly income tax calculator for individual taxpayers in Bangladesh. Enter your salary, other income, investment and tax already paid, and see your estimated tax for **Assessment Year 2026-27** (income year July 2025 to June 2026) update as you type. Everything runs in your browser, so no data leaves your device.
 
+**Live site:** https://bd-income-tax-calculator-alpha.vercel.app
+
 Based on the Income Tax Act 2023.
 
 ## Features
