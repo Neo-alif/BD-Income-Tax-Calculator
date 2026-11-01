@@ -125,6 +125,7 @@
       amount = 0; pill = 'Excess paid';
       note = 'You have paid ' + fmt(-c.net) + ' more than your total tax of ' + fmt(c.liability) + '. Claim it as an adjustment or refund when you file.';
     }
+    last.hero = { label: label, amount: amount, pill: pill, note: note };
     $('payLabel').textContent = label;
     $('payAmount').textContent = fmt(amount);
     $('payPill').textContent = pill;
@@ -259,6 +260,19 @@
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(function () { toast('Summary copied'); }, function () { fallbackCopy(text); });
     } else { fallbackCopy(text); }
+  });
+
+  $('pdfBtn').addEventListener('click', function () {
+    if (!(window.jspdf && window.jspdf.jsPDF) || typeof buildReport !== 'function') { toast('PDF tool could not load. Reload the page and try again.'); return; }
+    try {
+      var doc = buildReport(window.jspdf.jsPDF, {
+        c: last.c, s: last.s, hero: last.hero, cat: catLabel(last.s.cat),
+        mode: last.s.mult === 12 ? 'Monthly amounts' : 'Yearly amounts',
+        date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
+      });
+      doc.save('BD-Income-Tax-AY2026-27.pdf');
+      toast('PDF downloaded');
+    } catch (err) { toast('Could not create the PDF'); }
   });
 
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;

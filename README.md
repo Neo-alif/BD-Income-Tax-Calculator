@@ -14,6 +14,7 @@ Based on the Income Tax Act 2023.
 - Business, house property and other income
 - Investment rebate, minimum tax (including first-time filer) and tax already paid
 - Slab-by-slab breakdown, income split bar, effective rate and tax per month
+- **Download PDF** report with the computation, slab table and rules used (one A4 page)
 - Lakh and crore number formatting, and Bangla digits accepted in inputs
 - Responsive layout for desktop and mobile, light and dark theme
 - All rates and limits are editable in the "Rates and limits used" panel
@@ -43,8 +44,12 @@ index.html        page markup
 style.css         styles (light and dark tokens)
 tax.js            pure tax calculation (compute)
 app.js            form wiring and rendering
+pdf.js            builds the PDF report (uses jsPDF)
+vendor/           jsPDF 4.2.1 (MIT), included so the site makes no extra network calls
 tests/tax.test.js checks for the calculation
 ```
+
+The PDF text is plain ASCII because the built-in PDF fonts have no Taka sign, so amounts appear as "Tk".
 
 ## Rules used for AY 2026-27
 
