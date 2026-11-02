@@ -198,9 +198,11 @@
     clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.classList.remove('show'); }, 2200);
   }
 
+  function setMsg() { $('exampleMsg').textContent = 'Your tax updates as you type.'; }
+
   $('form').addEventListener('submit', function (e) { e.preventDefault(); });
   $('form').addEventListener('input', function (e) {
-    if (e.target && e.target.hasAttribute && e.target.hasAttribute('data-main')) $('exampleNote').hidden = true;
+    if (e.target && e.target.hasAttribute && e.target.hasAttribute('data-main')) setMsg();
     update();
   });
   $('first').addEventListener('change', update);
@@ -219,7 +221,7 @@
 
   $('clearBtn').addEventListener('click', function () {
     document.querySelectorAll('input[data-main]').forEach(function (i) { i.value = ''; });
-    $('exampleNote').hidden = true;
+    setMsg();
     update();
     toast('All amounts cleared');
   });
@@ -280,10 +282,7 @@
     $('result').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
   });
   try {
-    var io = new IntersectionObserver(function (entries) {
-      $('dock').hidden = entries[0].isIntersecting;
-    }, { threshold: 0.15 });
-    io.observe($('payHero'));
+    new IntersectionObserver(function (e) { $('dock').hidden = e[0].isIntersecting; }, { threshold: 0.15 }).observe($('payHero'));
   } catch (err) { $('dock').hidden = false; }
 
   updatePer();

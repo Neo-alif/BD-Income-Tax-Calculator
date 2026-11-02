@@ -16,7 +16,8 @@ Based on the Income Tax Act 2023.
 - Slab-by-slab breakdown, income split bar, effective rate and tax per month
 - **Download PDF** report with the computation, slab table and rules used (one A4 page)
 - Lakh and crore number formatting, and Bangla digits accepted in inputs
-- Responsive layout for desktop and mobile, light and dark theme
+- Landing page with an animated hero, and a separate calculator page
+- Responsive layout for desktop and mobile, dark by default with a light theme toggle
 - All rates and limits are editable in the "Rates and limits used" panel
 
 ## Run it
@@ -40,8 +41,11 @@ node tests/tax.test.js
 ## Project structure
 
 ```
-index.html        page markup
-style.css         styles (light and dark tokens)
+index.html        landing page (hero)
+calculator.html   the calculator page
+theme.js          dark and light theme toggle (shared)
+logo.svg          logo (logo-512.png is a transparent PNG)
+style.css         styles (dark and light tokens)
 tax.js            pure tax calculation (compute)
 app.js            form wiring and rendering
 pdf.js            builds the PDF report (uses jsPDF)

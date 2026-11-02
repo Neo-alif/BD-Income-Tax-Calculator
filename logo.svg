@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="BD Income Tax Calculator logo">
+  <title>BD Income Tax Calculator</title>
+  <rect width="512" height="512" rx="112" fill="#0A6A4D"/>
+  <!-- tax slabs: four steps that climb, each one a higher band -->
+  <g fill="#DCEFE6">
+    <path d="M108 392V318a16 16 0 0 1 16-16h32a16 16 0 0 1 16 16v74z" opacity=".5"/>
+    <path d="M192 392V258a16 16 0 0 1 16-16h32a16 16 0 0 1 16 16v134z" opacity=".7"/>
+    <path d="M276 392V198a16 16 0 0 1 16-16h32a16 16 0 0 1 16 16v194z" opacity=".88"/>
+    <path d="M360 392V138a16 16 0 0 1 16-16h32a16 16 0 0 1 16 16v254z"/>
+  </g>
+  <!-- percent sign sitting on the low slabs -->
+  <g fill="#FFFFFF" stroke="#FFFFFF">
+    <circle cx="130" cy="132" r="19" stroke="none"/>
+    <circle cx="206" cy="208" r="19" stroke="none"/>
+    <path d="M210 120L126 220" fill="none" stroke-width="15" stroke-linecap="round"/>
+  </g>
+  <!-- ground line -->
+  <path d="M92 416h328" stroke="#DCEFE6" stroke-width="10" stroke-linecap="round" opacity=".55"/>
+</svg>
